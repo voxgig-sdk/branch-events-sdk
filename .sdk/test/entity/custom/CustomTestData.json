@@ -1,0 +1,429 @@
+{
+  "existing": {
+    "custom": {
+      "CUSTOM00": {
+        "ascending_only": true,
+        "branch_key": "s65",
+        "coarse_key": "s66",
+        "custom_data": {},
+        "event_data": {},
+        "locked": false,
+        "meta_data": {},
+        "name": "s6b",
+        "update_conversion_value": 108,
+        "user_data": {},
+        "id": "CUSTOM00"
+      },
+      "CUSTOM01": {
+        "ascending_only": true,
+        "branch_key": "sc9",
+        "coarse_key": "sca",
+        "custom_data": {},
+        "event_data": {},
+        "locked": false,
+        "meta_data": {},
+        "name": "scf",
+        "update_conversion_value": 208,
+        "user_data": {},
+        "id": "CUSTOM01"
+      },
+      "CUSTOM02": {
+        "ascending_only": true,
+        "branch_key": "s12d",
+        "coarse_key": "s12e",
+        "custom_data": {},
+        "event_data": {},
+        "locked": false,
+        "meta_data": {},
+        "name": "s133",
+        "update_conversion_value": 308,
+        "user_data": {},
+        "id": "CUSTOM02"
+      }
+    }
+  },
+  "new": {
+    "custom": {
+      "custom_ref01": {
+        "ascending_only": true,
+        "branch_key": "s191",
+        "coarse_key": "s192",
+        "custom_data": {},
+        "event_data": {},
+        "locked": false,
+        "meta_data": {},
+        "name": "s197",
+        "update_conversion_value": 408,
+        "user_data": {}
+      }
+    }
+  },
+  "requests": {
+    "POST /event/custom": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "logCustomEvents",
+        "parameters": [
+          {
+            "description": "Recommended. The media type of the request body. Should be `application/json`.",
+            "in": "header",
+            "name": "Content-Type",
+            "required": "false",
+            "schema": {
+              "example": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Recommended. The media type the client expects in the response. Should be `application/json`.",
+            "in": "header",
+            "name": "Accept",
+            "required": "false",
+            "schema": {
+              "example": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend).\n\n**Two requirements must be met for this header to function:**\n\n1. **Your app ID must be allowlisted by Branch.** The header is ignored until allowlisting is enabled. [Open a support request](https://support.branch.io/) to have your app ID allowlisted before sending this header in production.\n2. **You must also include `user_data.ip` in the request body** with the same IP value. Sending the header alone is not sufficient — the body field is what Branch persists for attribution.\n",
+            "in": "header",
+            "name": "X-IP-Override",
+            "required": "false",
+            "schema": {
+              "example": "198.51.100.42",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "branch_key": {
+                    "description": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
+                    "example": "key_live_xxxx",
+                    "type": "string"
+                  },
+                  "custom_data": {
+                    "additionalProperties": "true",
+                    "description": "Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.",
+                    "type": "object"
+                  },
+                  "event_data": {
+                    "properties": {
+                      "affiliation": {
+                        "description": "Store or affiliation from which this transaction occurred (e.g. Google Store)",
+                        "example": "test_affiliation",
+                        "type": "string"
+                      },
+                      "coupon": {
+                        "description": "Transaction coupon redeemed with the transaction (e.g. \"SPRING2017\")",
+                        "example": "coupon",
+                        "type": "string"
+                      },
+                      "currency": {
+                        "description": "Currency that revenue, price, shipping, tax were originally reported in by the partner",
+                        "example": "USD",
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "Description associated with the event, not necessarily specific to any individual content items (see below)",
+                        "example": "Event_description",
+                        "type": "string"
+                      },
+                      "revenue": {
+                        "description": "The partner-specified reported revenue for the event.",
+                        "example": "1.5",
+                        "type": "number"
+                      },
+                      "search_query": {
+                        "description": "Additional search queries.",
+                        "example": "Test Search query",
+                        "type": "string"
+                      },
+                      "shipping": {
+                        "description": "Shipping cost associated with the transaction.",
+                        "example": "10.2",
+                        "type": "number"
+                      },
+                      "tax": {
+                        "description": "Total tax associated with the transaction.",
+                        "example": "12.3",
+                        "type": "number"
+                      },
+                      "transaction_id": {
+                        "description": "The partner-specified transaction id for their internal use",
+                        "example": "00000000",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "meta_data": {
+                    "additionalProperties": "true",
+                    "description": "Additional metadata for the event.",
+                    "type": "object"
+                  },
+                  "name": {
+                    "description": "The name of the event to log. Can be a string of custom event name. For instance \"picture swiped\".\n",
+                    "example": "CustomEventTest",
+                    "type": "string"
+                  },
+                  "user_data": {
+                    "description": "Information about the user and the device the event occurred on.\n\n**Required identifiers**: You must include at least one of the following in `user_data`:\n  * `developer_identity`, or\n  * `browser_fingerprint_id`, or\n  * `os=iOS` AND `idfa`, or\n  * `os=iOS` AND `idfv`, or\n  * `os=Android` AND `android_id`, or\n  * `os=Android` AND `aaid`\n",
+                    "properties": {
+                      "aaid": {
+                        "description": "The Android/Google advertising ID.",
+                        "example": "abcdabcd-0123-0123-00f0-000000000000",
+                        "type": "string"
+                      },
+                      "advertising_ids": {
+                        "description": "Wrapper object for advertising identifiers. Use this in addition to the flat aaid, idfa, and idfv fields above to future-proof your integration for non-standard IDs (for example, OAID on Huawei devices). Additional advertising ID keys may be supported as new platforms emerge — contact Branch Support if you need to send an identifier that is not listed here.",
+                        "properties": {
+                          "oaid": {
+                            "description": "Open Advertising ID, used on Huawei devices and other Android devices without Google Play Services.",
+                            "example": "00aa00a0-0000-0a00-a000-aaa0000a0aaa",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "android_id": {
+                        "description": "Android hardware ID",
+                        "example": "a12300000000",
+                        "type": "string"
+                      },
+                      "anon_id": {
+                        "description": "The Facebook anonymous user ID. **Required** when running Facebook campaigns using Aggregated Event Measurement (AEM) on iOS.",
+                        "example": "fbanon_abc123def456",
+                        "type": "string"
+                      },
+                      "app_version": {
+                        "description": "The app version downloaded by the user.",
+                        "example": "1.0.0",
+                        "type": "string"
+                      },
+                      "brand": {
+                        "description": "The brand of the device",
+                        "example": "LGE",
+                        "type": "string"
+                      },
+                      "browser_fingerprint_id": {
+                        "description": "Branch internal-only field for tracking browsers.",
+                        "example": "857675855146829999",
+                        "type": "string"
+                      },
+                      "country": {
+                        "description": "The country code of the user, usually based on device settings or user agent string.",
+                        "example": "US",
+                        "type": "string"
+                      },
+                      "developer_identity": {
+                        "description": "The developer-specified identity for a user.",
+                        "example": "user123",
+                        "type": "string"
+                      },
+                      "dma_ad_personalization": {
+                        "description": "Whether end user has granted or denied ads personalization consent. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.",
+                        "example": "true",
+                        "type": "boolean"
+                      },
+                      "dma_ad_user_data": {
+                        "description": "Whether end user has granted or denied consent for 3P transmission of user level data for ads. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.",
+                        "example": "true",
+                        "type": "boolean"
+                      },
+                      "dma_eea": {
+                        "description": "Whether European regulations, including the DMA, apply to this user and conversion. **Required** if EU regulations apply to this user. Failure to include user consent signals may result in attribution or campaign performance degradation.",
+                        "example": "true",
+                        "type": "boolean"
+                      },
+                      "environment": {
+                        "description": "usually FULL_APP",
+                        "example": "FULL_APP",
+                        "type": "string"
+                      },
+                      "google_analytics_id": {
+                        "description": "The Google Analytics client ID, useful for cross-platform stitching with Google Analytics. Include where applicable to improve attribution coverage and downstream analytics.",
+                        "example": "GA1.2.123456789.1234567890",
+                        "type": "string"
+                      },
+                      "http_origin": {
+                        "description": "The current page url where Web SDK logged web session start.",
+                        "example": "https://example.com/landing",
+                        "type": "string"
+                      },
+                      "http_referrer": {
+                        "description": "The referral url that led to the current page where Web SDK logged web session start.",
+                        "example": "https://referrer.example.com/path",
+                        "type": "string"
+                      },
+                      "idfa": {
+                        "description": "iOS advertising ID",
+                        "example": "00000000-0000-0000-0000-000000000001",
+                        "type": "string"
+                      },
+                      "idfv": {
+                        "description": "iOS vendor ID",
+                        "example": "00000000-0000-0000-0000-000000000002",
+                        "type": "string"
+                      },
+                      "ip": {
+                        "description": "The IP address for the device where the event occurred. Required if using the `X-IP-Override` request header.",
+                        "example": "198.51.100.42",
+                        "type": "string"
+                      },
+                      "language": {
+                        "description": "The language code of the user, usually based on device settings or user agent string.",
+                        "example": "en",
+                        "type": "string"
+                      },
+                      "limit_ad_tracking": {
+                        "description": "true if the partner has opted to not be tracked by advertisers",
+                        "example": "false",
+                        "type": "boolean"
+                      },
+                      "local_ip": {
+                        "description": "Android only - local ip of the device",
+                        "example": "192.0.2.1",
+                        "type": "string"
+                      },
+                      "model": {
+                        "description": "The model of the device.",
+                        "example": "Nexus 5X",
+                        "type": "string"
+                      },
+                      "os": {
+                        "description": "One of the following operating system e.g. Android, iOS,MAC_OS,LINUX,WINDOWS etc.",
+                        "example": "Android",
+                        "type": "string"
+                      },
+                      "os_version": {
+                        "description": "The version of the operating system. Strongly recommended for all paid traffic to ensure accurate attribution. **Required** for Facebook campaigns on iOS.\n",
+                        "example": "12.4.0",
+                        "type": "string"
+                      },
+                      "randomized_device_token": {
+                        "description": "Branch internal-only field for tracking devices.",
+                        "example": "857675855146829998",
+                        "type": "string"
+                      },
+                      "screen_dpi": {
+                        "description": "The screen's DPI.",
+                        "example": "420",
+                        "type": "integer"
+                      },
+                      "screen_height": {
+                        "description": "The screen's height.",
+                        "example": "1794",
+                        "type": "integer"
+                      },
+                      "screen_width": {
+                        "description": "The screen's width.",
+                        "example": "1080",
+                        "type": "integer"
+                      },
+                      "user_agent": {
+                        "description": "The user agent of the browser or app where the event occurred. Usually associated with a webview.",
+                        "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "branch_key",
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successful event ingestion. The response carries SKAdNetwork-relevant fields that the app can use to update its native SKAN conversion value.",
+                  "properties": {
+                    "ascending_only": {
+                      "example": "false",
+                      "type": "boolean"
+                    },
+                    "coarse_key": {
+                      "example": "high",
+                      "type": "string"
+                    },
+                    "locked": {
+                      "example": "false",
+                      "type": "boolean"
+                    },
+                    "update_conversion_value": {
+                      "example": "3",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"error\": {\n        \"message\": \"Authentication failed !\",\n        \"code\": 400\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "example": "400",
+                          "type": "integer"
+                        },
+                        "message": {
+                          "example": "Authentication failed !",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication Failed"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"error\": {\n        \"code\": 429,\n        \"message\": \"Rate limit reached.\"\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate Limit Reached"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
+  }
+}

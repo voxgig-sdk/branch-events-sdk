@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Custom | Events API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Events API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/branch-events-sdk">voxgig-sdk/branch-events-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Events API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a aria-current="page" href="../api/custom.html">Custom</a><div class="nav-sections"><a class="nav-section" href="#post-eventcustom">POST /event/custom</a></div>
+<a href="../api/standard.html">Standard</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="custom">Custom</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-eventcustom"><code>/event/custom</code></a></td>
+<td><code>create</code></td>
+<td>Ok</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ascending_only</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>branch_key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Branch Key of the originating app obtained in your <a href="https://help.branch.io/using-branch/docs/profile-settings">Account Settings</a></td>
+</tr>
+<tr>
+<td><code>coarse_key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional custom key-value pairs that you want attached to the event.</td>
+</tr>
+<tr>
+<td><code>event_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>locked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional metadata for the event.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the event to log.</td>
+</tr>
+<tr>
+<td><code>update_conversion_value</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>user_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information about the user and the device the event occurred on.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-eventcustom" class="operation" data-method="post"><code>POST</code> /event/custom</h3>
+<p>Operation ID: <code>logCustomEvents</code>.</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Content-Type</code> | <code>header</code> | <code>string</code> | Yes | Recommended. The media type of the request body. Should be <code>application/json</code>. |
+| <code>Accept</code> | <code>header</code> | <code>string</code> | Yes | Recommended. The media type the client expects in the response. Should be <code>application/json</code>. |
+| <code>X-IP-Override</code> | <code>header</code> | <code>string</code> | Yes | Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend). <strong>Two requirements must be met for this header to function:</strong> 1. <strong>Your app ID must be allowlisted by Branch.</strong> The header is ignored until allowlisting is enabled. <a href="https://support.branch.io/">Open a support request</a> to have your app ID allowlisted before sending this header in production. 2. <strong>You must also include <code>user_data.ip</code> in the request body</strong> with the same IP value. Sending the header alone is not sufficient, the body field is what Branch persists for attribution. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch_key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Branch Key of the originating app obtained in your <a href="https://help.branch.io/using-branch/docs/profile-settings">Account Settings</a></td>
+</tr>
+<tr>
+<td><code>custom_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.</td>
+</tr>
+<tr>
+<td><code>event_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>event_data.affiliation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Store or affiliation from which this transaction occurred (for example Google Store)</td>
+</tr>
+<tr>
+<td><code>event_data.coupon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Transaction coupon redeemed with the transaction (for example &quot;SPRING2017&quot;)</td>
+</tr>
+<tr>
+<td><code>event_data.currency</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Currency that revenue, price, shipping, tax were originally reported in by the partner</td>
+</tr>
+<tr>
+<td><code>event_data.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Description associated with the event, not necessarily specific to any individual content items (see below)</td>
+</tr>
+<tr>
+<td><code>event_data.revenue</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The partner-specified reported revenue for the event.</td>
+</tr>
+<tr>
+<td><code>event_data.search_query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional search queries.</td>
+</tr>
+<tr>
+<td><code>event_data.shipping</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Shipping cost associated with the transaction.</td>
+</tr>
+<tr>
+<td><code>event_data.tax</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Total tax associated with the transaction.</td>
+</tr>
+<tr>
+<td><code>event_data.transaction_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The partner-specified transaction id for their internal use</td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional metadata for the event.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the event to log. Can be a string of custom event name. For instance &quot;picture swiped&quot;.</td>
+</tr>
+<tr>
+<td><code>user_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information about the user and the device the event occurred on. <strong>Required identifiers</strong>: You must include at least one of the following in <code>user_data</code>: * <code>developer_identity</code>, or * <code>browser_fingerprint_id</code>, or * <code>os=iOS</code> AND <code>idfa</code>, or * <code>os=iOS</code> AND <code>idfv</code>, or * <code>os=Android</code> AND <code>android_id</code>, or * <code>os=Android</code> AND <code>aaid</code></td>
+</tr>
+<tr>
+<td><code>user_data.aaid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Android/Google advertising ID.</td>
+</tr>
+<tr>
+<td><code>user_data.advertising_ids</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Wrapper object for advertising identifiers. Use this in addition to the flat aaid, idfa, and idfv fields above to future-proof your integration for non-standard IDs (for example, OAID on Huawei devices). Additional advertising ID keys may be supported as new platforms emerge, contact Branch Support if you need to send an identifier that is not listed here.</td>
+</tr>
+<tr>
+<td><code>user_data.advertising_ids.oaid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Open Advertising ID, used on Huawei devices and other Android devices without Google Play Services.</td>
+</tr>
+<tr>
+<td><code>user_data.android_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Android hardware ID</td>
+</tr>
+<tr>
+<td><code>user_data.anon_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Facebook anonymous user ID. <strong>Required</strong> when running Facebook campaigns using Aggregated Event Measurement (AEM) on iOS.</td>
+</tr>
+<tr>
+<td><code>user_data.app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The app version downloaded by the user.</td>
+</tr>
+<tr>
+<td><code>user_data.brand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The brand of the device</td>
+</tr>
+<tr>
+<td><code>user_data.browser_fingerprint_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Branch internal-only field for tracking browsers.</td>
+</tr>
+<tr>
+<td><code>user_data.country</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The country code of the user, usually based on device settings or user agent string.</td>
+</tr>
+<tr>
+<td><code>user_data.developer_identity</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The developer-specified identity for a user.</td>
+</tr>
+<tr>
+<td><code>user_data.dma_ad_personalization</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether end user has granted or denied ads personalization consent. <strong>Required</strong> if <code>dma_eea</code> is set to <code>true</code> (that is, EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.</td>
+</tr>
+<tr>
+<td><code>user_data.dma_ad_user_data</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether end user has granted or denied consent for 3P transmission of user level data for ads. <strong>Required</strong> if <code>dma_eea</code> is set to <code>true</code> (that is, EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.</td>
+</tr>
+<tr>
+<td><code>user_data.dma_eea</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether European regulations, including the DMA, apply to this user and conversion. <strong>Required</strong> if EU regulations apply to this user. Failure to include user consent signals may result in attribution or campaign performance degradation.</td>
+</tr>
+<tr>
+<td><code>user_data.environment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>usually FULL_APP</td>
+</tr>
+<tr>
+<td><code>user_data.google_analytics_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Google Analytics client ID, useful for cross-platform stitching with Google Analytics. Include where applicable to improve attribution coverage and downstream analytics.</td>
+</tr>
+<tr>
+<td><code>user_data.http_origin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The current page url where Web SDK logged web session start.</td>
+</tr>
+<tr>
+<td><code>user_data.http_referrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The referral url that led to the current page where Web SDK logged web session start.</td>
+</tr>
+<tr>
+<td><code>user_data.idfa</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>iOS advertising ID</td>
+</tr>
+<tr>
+<td><code>user_data.idfv</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>iOS vendor ID</td>
+</tr>
+<tr>
+<td><code>user_data.ip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The IP address for the device where the event occurred. Required if using the <code>X-IP-Override</code> request header.</td>
+</tr>
+<tr>
+<td><code>user_data.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language code of the user, usually based on device settings or user agent string.</td>
+</tr>
+<tr>
+<td><code>user_data.limit_ad_tracking</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>true if the partner has opted to not be tracked by advertisers</td>
+</tr>
+<tr>
+<td><code>user_data.local_ip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Android only - local ip of the device</td>
+</tr>
+<tr>
+<td><code>user_data.model</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The model of the device.</td>
+</tr>
+<tr>
+<td><code>user_data.os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>One of the following operating system for example Android, iOS,MAC_OS,LINUX,WINDOWS etc.</td>
+</tr>
+<tr>
+<td><code>user_data.os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the operating system. Strongly recommended for all paid traffic to ensure accurate attribution. <strong>Required</strong> for Facebook campaigns on iOS.</td>
+</tr>
+<tr>
+<td><code>user_data.randomized_device_token</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Branch internal-only field for tracking devices.</td>
+</tr>
+<tr>
+<td><code>user_data.screen_dpi</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The screen's DPI.</td>
+</tr>
+<tr>
+<td><code>user_data.screen_height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The screen's height.</td>
+</tr>
+<tr>
+<td><code>user_data.screen_width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The screen's width.</td>
+</tr>
+<tr>
+<td><code>user_data.user_agent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The user agent of the browser or app where the event occurred. Usually associated with a webview.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-ok" class="status" data-status="2xx">200: Ok</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ascending_only</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>coarse_key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>locked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>update_conversion_value</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-authentication-failed" class="status" data-status="4xx">400: Authentication Failed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-rate-limit-reached" class="status" data-status="4xx">429: Rate Limit Reached</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

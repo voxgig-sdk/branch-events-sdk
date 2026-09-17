@@ -1,0 +1,33 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        email: "support@branch.io"
+        name: "Branch Support"
+        url: "https://support.branch.io"
+      }
+      description: `Branch's Events API is a robust endpoint for tracking all of your conversions in your app. With it, you'll be able to tie in detailed metadata about your Commerce, Content, Lifecycle, and Custom Events to better understand user behavior and attribute to your ongoing campaigns.
+
+## Important considerations
+
+- **Real-time only**: Events must be sent in real time as they occur. Branch does not support backtracking or historical event ingestion. Events with timestamps in the past will not be backfilled into reports.
+- **SKAdNetwork (SKAN)**: SKAN must be handled natively by your app, not via the Branch SDK. Branch returns SKAN-relevant fields (such as \`coarse_key\` and \`update_conversion_value\`) in the API response so your app can update its conversion value accordingly. See the [SKAdNetwork guide](https://help.branch.io/marketer-hub/docs/skadnetwork) for details.
+`
+      servers: [
+        {
+          url: "https://api2.branch.io/v2"
+        }
+      ]
+      summary: "Branch's Events API is a robust endpoint for tracking all of your conversions in your app."
+      termsOfService: "https://branch.io/policies/"
+      title: "Events API"
+      version: "1.0.1"
+      website: "https://api2.branch.io"
+    }
+  }
+}
+

@@ -1,1 +1,1970 @@
-{"name":"branch-events"}
+{
+  "NAME": "BRANCH-EVENTS",
+  "Name": "BranchEvents",
+  "def": "branch-events-openapi.json",
+  "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "github-pages": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "github-pages",
+            "name": "github-pages",
+            "origname": "",
+            "output": {
+              "path": "docs"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          },
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "custom": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "ascending_only",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "branch_key",
+              "req": true,
+              "short": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "coarse_key",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "custom_data",
+              "req": false,
+              "short": "Additional custom key-value pairs that you want attached to the event.",
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "event_data",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "locked",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "meta_data",
+              "req": false,
+              "short": "Additional metadata for the event.",
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "short": "The name of the event to log.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "update_conversion_value",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "user_data",
+              "req": false,
+              "short": "Information about the user and the device the event occurred on.",
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "custom",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "example": "application/json",
+                        "kind": "header",
+                        "name": "accept",
+                        "orig": "accept",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "application/json",
+                        "kind": "header",
+                        "name": "content_type",
+                        "orig": "content_type",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "198.51.100.42",
+                        "kind": "header",
+                        "name": "x_ip_override",
+                        "orig": "x_ip_override",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "contract": {
+                    "id": "POST /event/custom",
+                    "json": "{\"operationId\":\"logCustomEvents\",\"parameters\":[{\"description\":\"Recommended. The media type of the request body. Should be `application/json`.\",\"in\":\"header\",\"name\":\"Content-Type\",\"required\":\"false\",\"schema\":{\"example\":\"application/json\",\"type\":\"string\"}},{\"description\":\"Recommended. The media type the client expects in the response. Should be `application/json`.\",\"in\":\"header\",\"name\":\"Accept\",\"required\":\"false\",\"schema\":{\"example\":\"application/json\",\"type\":\"string\"}},{\"description\":\"Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend).\\n\\n**Two requirements must be met for this header to function:**\\n\\n1. **Your app ID must be allowlisted by Branch.** The header is ignored until allowlisting is enabled. [Open a support request](https://support.branch.io/) to have your app ID allowlisted before sending this header in production.\\n2. **You must also include `user_data.ip` in the request body** with the same IP value. Sending the header alone is not sufficient — the body field is what Branch persists for attribution.\\n\",\"in\":\"header\",\"name\":\"X-IP-Override\",\"required\":\"false\",\"schema\":{\"example\":\"198.51.100.42\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"branch_key\":{\"description\":\"The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)\",\"example\":\"key_live_xxxx\",\"type\":\"string\"},\"custom_data\":{\"additionalProperties\":\"true\",\"description\":\"Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.\",\"type\":\"object\"},\"event_data\":{\"properties\":{\"affiliation\":{\"description\":\"Store or affiliation from which this transaction occurred (e.g. Google Store)\",\"example\":\"test_affiliation\",\"type\":\"string\"},\"coupon\":{\"description\":\"Transaction coupon redeemed with the transaction (e.g. \\\"SPRING2017\\\")\",\"example\":\"coupon\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency that revenue, price, shipping, tax were originally reported in by the partner\",\"example\":\"USD\",\"type\":\"string\"},\"description\":{\"description\":\"Description associated with the event, not necessarily specific to any individual content items (see below)\",\"example\":\"Event_description\",\"type\":\"string\"},\"revenue\":{\"description\":\"The partner-specified reported revenue for the event.\",\"example\":\"1.5\",\"type\":\"number\"},\"search_query\":{\"description\":\"Additional search queries.\",\"example\":\"Test Search query\",\"type\":\"string\"},\"shipping\":{\"description\":\"Shipping cost associated with the transaction.\",\"example\":\"10.2\",\"type\":\"number\"},\"tax\":{\"description\":\"Total tax associated with the transaction.\",\"example\":\"12.3\",\"type\":\"number\"},\"transaction_id\":{\"description\":\"The partner-specified transaction id for their internal use\",\"example\":\"00000000\",\"type\":\"string\"}},\"type\":\"object\"},\"meta_data\":{\"additionalProperties\":\"true\",\"description\":\"Additional metadata for the event.\",\"type\":\"object\"},\"name\":{\"description\":\"The name of the event to log. Can be a string of custom event name. For instance \\\"picture swiped\\\".\\n\",\"example\":\"CustomEventTest\",\"type\":\"string\"},\"user_data\":{\"description\":\"Information about the user and the device the event occurred on.\\n\\n**Required identifiers**: You must include at least one of the following in `user_data`:\\n  * `developer_identity`, or\\n  * `browser_fingerprint_id`, or\\n  * `os=iOS` AND `idfa`, or\\n  * `os=iOS` AND `idfv`, or\\n  * `os=Android` AND `android_id`, or\\n  * `os=Android` AND `aaid`\\n\",\"properties\":{\"aaid\":{\"description\":\"The Android/Google advertising ID.\",\"example\":\"abcdabcd-0123-0123-00f0-000000000000\",\"type\":\"string\"},\"advertising_ids\":{\"description\":\"Wrapper object for advertising identifiers. Use this in addition to the flat aaid, idfa, and idfv fields above to future-proof your integration for non-standard IDs (for example, OAID on Huawei devices). Additional advertising ID keys may be supported as new platforms emerge — contact Branch Support if you need to send an identifier that is not listed here.\",\"properties\":{\"oaid\":{\"description\":\"Open Advertising ID, used on Huawei devices and other Android devices without Google Play Services.\",\"example\":\"00aa00a0-0000-0a00-a000-aaa0000a0aaa\",\"type\":\"string\"}},\"type\":\"object\"},\"android_id\":{\"description\":\"Android hardware ID\",\"example\":\"a12300000000\",\"type\":\"string\"},\"anon_id\":{\"description\":\"The Facebook anonymous user ID. **Required** when running Facebook campaigns using Aggregated Event Measurement (AEM) on iOS.\",\"example\":\"fbanon_abc123def456\",\"type\":\"string\"},\"app_version\":{\"description\":\"The app version downloaded by the user.\",\"example\":\"1.0.0\",\"type\":\"string\"},\"brand\":{\"description\":\"The brand of the device\",\"example\":\"LGE\",\"type\":\"string\"},\"browser_fingerprint_id\":{\"description\":\"Branch internal-only field for tracking browsers.\",\"example\":\"857675855146829999\",\"type\":\"string\"},\"country\":{\"description\":\"The country code of the user, usually based on device settings or user agent string.\",\"example\":\"US\",\"type\":\"string\"},\"developer_identity\":{\"description\":\"The developer-specified identity for a user.\",\"example\":\"user123\",\"type\":\"string\"},\"dma_ad_personalization\":{\"description\":\"Whether end user has granted or denied ads personalization consent. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"dma_ad_user_data\":{\"description\":\"Whether end user has granted or denied consent for 3P transmission of user level data for ads. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"dma_eea\":{\"description\":\"Whether European regulations, including the DMA, apply to this user and conversion. **Required** if EU regulations apply to this user. Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"environment\":{\"description\":\"usually FULL_APP\",\"example\":\"FULL_APP\",\"type\":\"string\"},\"google_analytics_id\":{\"description\":\"The Google Analytics client ID, useful for cross-platform stitching with Google Analytics. Include where applicable to improve attribution coverage and downstream analytics.\",\"example\":\"GA1.2.123456789.1234567890\",\"type\":\"string\"},\"http_origin\":{\"description\":\"The current page url where Web SDK logged web session start.\",\"example\":\"https://example.com/landing\",\"type\":\"string\"},\"http_referrer\":{\"description\":\"The referral url that led to the current page where Web SDK logged web session start.\",\"example\":\"https://referrer.example.com/path\",\"type\":\"string\"},\"idfa\":{\"description\":\"iOS advertising ID\",\"example\":\"00000000-0000-0000-0000-000000000001\",\"type\":\"string\"},\"idfv\":{\"description\":\"iOS vendor ID\",\"example\":\"00000000-0000-0000-0000-000000000002\",\"type\":\"string\"},\"ip\":{\"description\":\"The IP address for the device where the event occurred. Required if using the `X-IP-Override` request header.\",\"example\":\"198.51.100.42\",\"type\":\"string\"},\"language\":{\"description\":\"The language code of the user, usually based on device settings or user agent string.\",\"example\":\"en\",\"type\":\"string\"},\"limit_ad_tracking\":{\"description\":\"true if the partner has opted to not be tracked by advertisers\",\"example\":\"false\",\"type\":\"boolean\"},\"local_ip\":{\"description\":\"Android only - local ip of the device\",\"example\":\"192.0.2.1\",\"type\":\"string\"},\"model\":{\"description\":\"The model of the device.\",\"example\":\"Nexus 5X\",\"type\":\"string\"},\"os\":{\"description\":\"One of the following operating system e.g. Android, iOS,MAC_OS,LINUX,WINDOWS etc.\",\"example\":\"Android\",\"type\":\"string\"},\"os_version\":{\"description\":\"The version of the operating system. Strongly recommended for all paid traffic to ensure accurate attribution. **Required** for Facebook campaigns on iOS.\\n\",\"example\":\"12.4.0\",\"type\":\"string\"},\"randomized_device_token\":{\"description\":\"Branch internal-only field for tracking devices.\",\"example\":\"857675855146829998\",\"type\":\"string\"},\"screen_dpi\":{\"description\":\"The screen's DPI.\",\"example\":\"420\",\"type\":\"integer\"},\"screen_height\":{\"description\":\"The screen's height.\",\"example\":\"1794\",\"type\":\"integer\"},\"screen_width\":{\"description\":\"The screen's width.\",\"example\":\"1080\",\"type\":\"integer\"},\"user_agent\":{\"description\":\"The user agent of the browser or app where the event occurred. Usually associated with a webview.\",\"example\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)\",\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"branch_key\",\"name\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Successful event ingestion. The response carries SKAdNetwork-relevant fields that the app can use to update its native SKAN conversion value.\",\"properties\":{\"ascending_only\":{\"example\":\"false\",\"type\":\"boolean\"},\"coarse_key\":{\"example\":\"high\",\"type\":\"string\"},\"locked\":{\"example\":\"false\",\"type\":\"boolean\"},\"update_conversion_value\":{\"example\":\"3\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Ok\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Authentication failed !\\\",\\n        \\\"code\\\": 400\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"400\",\"type\":\"integer\"},\"message\":{\"example\":\"Authentication failed !\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Authentication Failed\"},\"429\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"code\\\": 429,\\n        \\\"message\\\": \\\"Rate limit reached.\\\"\\n    }\\n}\"}},\"schema\":{\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"type\":\"object\"}}},\"description\":\"Rate Limit Reached\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
+                  "kind": "http",
+                  "method": "POST",
+                  "orig": "/event/custom",
+                  "segments": [
+                    {
+                      "lit": "event"
+                    },
+                    {
+                      "lit": "custom"
+                    }
+                  ],
+                  "select": {
+                    "exist": [
+                      "accept",
+                      "content_type",
+                      "x_ip_override"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "standard": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "ascending_only",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "branch_key",
+              "req": true,
+              "short": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "coarse_key",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "content_items",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "custom_data",
+              "req": false,
+              "short": "Additional custom key-value pairs that you want attached to the event.",
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "customer_event_alias",
+              "req": false,
+              "short": "The event alias as defined by you; used in addition to the event name defined above.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "event_data",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "locked",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "short": "The name of the event to log.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "update_conversion_value",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "user_data",
+              "req": true,
+              "short": "Information about the user and the device the event occurred on.",
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "standard",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "example": "application/json",
+                        "kind": "header",
+                        "name": "accept",
+                        "orig": "accept",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "application/json",
+                        "kind": "header",
+                        "name": "content_type",
+                        "orig": "content_type",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "198.51.100.42",
+                        "kind": "header",
+                        "name": "x_ip_override",
+                        "orig": "x_ip_override",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "contract": {
+                    "id": "POST /event/standard",
+                    "json": "{\"operationId\":\"logStandardEvents\",\"parameters\":[{\"description\":\"Recommended. The media type of the request body. Should be `application/json`.\",\"in\":\"header\",\"name\":\"Content-Type\",\"required\":\"false\",\"schema\":{\"example\":\"application/json\",\"type\":\"string\"}},{\"description\":\"Recommended. The media type the client expects in the response. Should be `application/json`.\",\"in\":\"header\",\"name\":\"Accept\",\"required\":\"false\",\"schema\":{\"example\":\"application/json\",\"type\":\"string\"}},{\"description\":\"Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend).\\n\\n**Two requirements must be met for this header to function:**\\n\\n1. **Your app ID must be allowlisted by Branch.** The header is ignored until allowlisting is enabled. [Open a support request](https://support.branch.io/) to have your app ID allowlisted before sending this header in production.\\n2. **You must also include `user_data.ip` in the request body** with the same IP value. Sending the header alone is not sufficient — the body field is what Branch persists for attribution.\\n\",\"in\":\"header\",\"name\":\"X-IP-Override\",\"required\":\"false\",\"schema\":{\"example\":\"198.51.100.42\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"branch_key\":{\"description\":\"The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)\",\"example\":\"key_live_xxxx\",\"type\":\"string\"},\"content_items\":{\"items\":{\"properties\":{\"$address_city\":{\"description\":\"Commerce and Content Reports only. The street address for a restaurant, business, room (hotel), etc.\",\"example\":\"city1\",\"type\":\"string\"},\"$address_country\":{\"description\":\"Commerce and Content Reports only. The country code for a restaurant, business, room (hotel), etc.\",\"example\":\"Country1\",\"type\":\"string\"},\"$address_postal_code\":{\"description\":\"Commerce and Content Reports only. The postal/zip code for a restaurant, business, room (hotel), etc.\",\"example\":\"postal_code\",\"type\":\"string\"},\"$address_region\":{\"description\":\"Commerce and Content Reports only. The state or region for a restaurant, business, room (hotel), etc.\",\"example\":\"Region1\",\"type\":\"string\"},\"$address_street\":{\"description\":\"Commerce and Content Reports only. The street address for a restaurant, business, room (hotel), etc.\",\"example\":\"Street_name1\",\"type\":\"string\"},\"$canonical_identifier\":{\"description\":\"Commerce and Content Reports only. Used to allow Branch to unify content/messages for Content Analytics\",\"example\":\"item12345\",\"type\":\"string\"},\"$condition\":{\"description\":\"Commerce and Content Reports only. For auctions, whether the item is new, good, acceptable, etc.\",\"enum\":[\"OTHER\",\"NEW\",\"EXCELLENT\",\"GOOD\",\"FAIR\",\"POOR\",\"USED\",\"REFURBISHED\"],\"type\":\"string\"},\"$content_schema\":{\"description\":\"Category / Schema for a piece of content.\",\"enum\":[\"COMMERCE_AUCTION\",\"COMMERCE_BUSINESS\",\"COMMERCE_OTHER\",\"COMMERCE_PRODUCT\",\"COMMERCE_RESTAURANT\",\"COMMERCE_SERVICE\",\"COMMERCE_TRAVEL_FLIGHT\",\"COMMERCE_TRAVEL_HOTEL\",\"COMMERCE_TRAVEL_OTHER\",\"GAME_STATE\",\"MEDIA_IMAGE\",\"MEDIA_MIXED\",\"MEDIA_MUSIC\",\"MEDIA_OTHER\",\"MEDIA_VIDEO\",\"OTHER\",\"TEXT_ARTICLE\",\"TEXT_BLOG\",\"TEXT_OTHER\",\"TEXT_RECIPE\",\"TEXT_REVIEW\",\"TEXT_SEARCH_RESULTS\",\"TEXT_STORY\",\"TEXT_TECHNICAL_DOC\"],\"example\":\"COMMERCE_PRODUCT\",\"type\":\"string\"},\"$creation_timestamp\":{\"description\":\"Commerce and Content Reports only. The time the content was created (Unix timestamp, typically in milliseconds).\",\"example\":\"1499892854966\",\"format\":\"int64\",\"type\":\"integer\"},\"$custom_fields\":{\"additionalProperties\":\"true\",\"description\":\"Commerce and Content Reports only. key-value pairs that the app developer would like attached to the content item. Values may be of any JSON type. Attached to events that are retrieved via Exports and sent via Webhooks.\",\"type\":\"object\"},\"$exp_date\":{\"description\":\"Commerce and Content Reports only. The last time after which this content is no longer valid. null / 0 mean no limit. Should rarely be set.\",\"example\":\"0\",\"format\":\"int64\",\"type\":\"integer\"},\"$image_captions\":{\"description\":\"Commerce and Content Reports only.  The captions associated with the image.\",\"items\":{\"example\":\"my_img_caption1\",\"type\":\"string\"},\"type\":\"array\"},\"$keywords\":{\"description\":\"Commerce and Content Reports only. keywords\",\"example\":[\"sneakers\",\"shoes\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"$latitude\":{\"description\":\"Commerce and Content Reports only. The latitude for a restaurant, business, room (hotel), etc.\",\"example\":\"12.07\",\"type\":\"number\"},\"$locally_indexable\":{\"description\":\"Commerce and Content Reports only. true- content can be indexed for local (device) use. false- cannot index for local use\",\"example\":\"true\",\"type\":\"boolean\"},\"$longitude\":{\"description\":\"Commerce and Content Reports only. The longitude for a restaurant, business, room (hotel), etc.\",\"example\":\"-97.5\",\"type\":\"number\"},\"$og_image_url\":{\"description\":\"Commerce and Content Reports only. The image URL (for the individual content item).\",\"example\":\"valid URL\",\"type\":\"string\"},\"$og_title\":{\"description\":\"Commerce and Content Reports only. The title (for the individual content item).\",\"example\":\"My Content Title\",\"type\":\"string\"},\"$price\":{\"description\":\"Commerce and Content Reports only. The price for the product/content.\",\"example\":\"23.2\",\"type\":\"number\"},\"$product_brand\":{\"description\":\"Commerce and Content Reports only. The product's brand.\",\"example\":\"my_prod_Brand1\",\"type\":\"string\"},\"$product_category\":{\"description\":\"Commerce and Content Reports only. The product's category, if it's a product\",\"enum\":[\"ANIMALS_AND_PET_SUPPLIES\",\"APPAREL_AND_ACCESSORIES\",\"ARTS_AND_ENTERTAINMENT\",\"BABY_AND_TODDLER\",\"BUSINESS_AND_INDUSTRIAL\",\"CAMERAS_AND_OPTICS\",\"ELECTRONICS\",\"FOOD_BEVERAGES_AND_TOBACCO\",\"FURNITURE\",\"HARDWARE\",\"HEALTH_AND_BEAUTY\",\"HOME_AND_GARDEN\",\"LUGGAGE_AND_BAGS\",\"MATURE\",\"MEDIA\",\"OFFICE_SUPPLIES\",\"RELIGIOUS_AND_CEREMONIAL\",\"SOFTWARE\",\"SPORTING_GOODS\",\"TOYS_AND_GAMES\",\"VEHICLES_AND_PARTS\"],\"example\":\"BABY_AND_TODDLER\",\"type\":\"string\"},\"$product_name\":{\"description\":\"Commerce and Content Reports only. The product's name.\",\"example\":\"my_product_name1\",\"type\":\"string\"},\"$product_variant\":{\"description\":\"Commerce and Content Reports only. The product's variant (e.g. XL, red).\",\"example\":\"3T\",\"type\":\"string\"},\"$publicly_indexable\":{\"description\":\"Commerce and Content Reports only. true-  content can be seen by anyone. false- cannot index for public use\",\"example\":\"false\",\"type\":\"boolean\"},\"$quantity\":{\"description\":\"Commerce and Content Reports only. The quantity of the item to be ordered (for PURCHASE, ADD_TO_CART, etc).\",\"example\":\"2\",\"type\":\"number\"},\"$rating_average\":{\"description\":\"Commerce and Content Reports only. The average rating of the item.\",\"example\":\"4.2\",\"type\":\"number\"},\"$rating_count\":{\"description\":\"Commerce and Content Reports only. The number of ratings for the item.\",\"example\":\"5\",\"type\":\"number\"},\"$rating_max\":{\"description\":\"Commerce and Content Reports only. The maximum possible rating for the item (e.g. 5.0 if 5 stars is highest possible rating).\",\"example\":\"5\",\"type\":\"number\"},\"$sku\":{\"description\":\"Commerce and Content Reports only. The product sku or product ID.\",\"example\":\"1994320302\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"custom_data\":{\"additionalProperties\":\"true\",\"description\":\"Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.\",\"type\":\"object\"},\"customer_event_alias\":{\"description\":\"The event alias as defined by you; used in addition to the event name defined above.\",\"example\":\"my custom alias\",\"type\":\"string\"},\"event_data\":{\"properties\":{\"affiliation\":{\"description\":\"Store or affiliation from which this transaction occurred (e.g. Google Store)\",\"example\":\"test_affiliation\",\"type\":\"string\"},\"coupon\":{\"description\":\"Transaction coupon redeemed with the transaction (e.g. \\\"SPRING2017\\\")\",\"example\":\"coupon\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency that revenue, price, shipping, tax were originally reported in by the partner\",\"example\":\"USD\",\"type\":\"string\"},\"description\":{\"description\":\"Description associated with the event, not necessarily specific to any individual content items (see below)\",\"example\":\"Event_description\",\"type\":\"string\"},\"revenue\":{\"description\":\"The partner-specified reported revenue for the event.\",\"example\":\"1.5\",\"type\":\"number\"},\"search_query\":{\"description\":\"Additional search queries.\",\"example\":\"Test Search query\",\"type\":\"string\"},\"shipping\":{\"description\":\"Shipping cost associated with the transaction.\",\"example\":\"10.2\",\"type\":\"number\"},\"tax\":{\"description\":\"Total tax associated with the transaction.\",\"example\":\"12.3\",\"type\":\"number\"},\"transaction_id\":{\"description\":\"The partner-specified transaction id for their internal use\",\"example\":\"00000000\",\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"The name of the event to log. Must be one of the following standard Branch Event names:\\n  * Commerce:\\n    * ADD_TO_CART\\n    * ADD_TO_WISHLIST\\n    * VIEW_CART\\n    * INITIATE_PURCHASE\\n    * ADD_PAYMENT_INFO\\n    * CLICK_AD\\n    * PURCHASE\\n    * SPEND_CREDITS\\n    * VIEW_AD\\n  * Content:\\n    * SEARCH\\n    * VIEW_ITEM\\n    * VIEW_ITEMS\\n    * RATE\\n    * SHARE\\n    * INITIATE_STREAM\\n    * COMPLETE_STREAM\\n  * User Lifecycle:\\n    * COMPLETE_REGISTRATION\\n    * COMPLETE_TUTORIAL\\n    * ACHIEVE_LEVEL\\n    * UNLOCK_ACHIEVEMENT\\n    * INVITE\\n    * LOGIN\\n    * START_TRIAL\\n    * SUBSCRIBE\\n\",\"enum\":[\"ADD_TO_CART\",\"ADD_TO_WISHLIST\",\"VIEW_CART\",\"INITIATE_PURCHASE\",\"ADD_PAYMENT_INFO\",\"CLICK_AD\",\"PURCHASE\",\"SPEND_CREDITS\",\"VIEW_AD\",\"SEARCH\",\"VIEW_ITEM\",\"VIEW_ITEMS\",\"RATE\",\"SHARE\",\"INITIATE_STREAM\",\"COMPLETE_STREAM\",\"COMPLETE_REGISTRATION\",\"COMPLETE_TUTORIAL\",\"ACHIEVE_LEVEL\",\"UNLOCK_ACHIEVEMENT\",\"INVITE\",\"LOGIN\",\"START_TRIAL\",\"SUBSCRIBE\"],\"example\":\"PURCHASE\",\"type\":\"string\"},\"user_data\":{\"description\":\"Information about the user and the device the event occurred on.\\n\\n**Required identifiers**: You must include at least one of the following in `user_data`:\\n  * `developer_identity`, or\\n  * `browser_fingerprint_id`, or\\n  * `os=iOS` AND `idfa`, or\\n  * `os=iOS` AND `idfv`, or\\n  * `os=Android` AND `android_id`, or\\n  * `os=Android` AND `aaid`\\n\",\"properties\":{\"aaid\":{\"description\":\"The Android/Google advertising ID.\",\"example\":\"abcdabcd-0123-0123-00f0-000000000000\",\"type\":\"string\"},\"advertising_ids\":{\"description\":\"Wrapper object for advertising identifiers. Use this in addition to the flat aaid, idfa, and idfv fields above to future-proof your integration for non-standard IDs (for example, OAID on Huawei devices). Additional advertising ID keys may be supported as new platforms emerge — contact Branch Support if you need to send an identifier that is not listed here.\",\"properties\":{\"oaid\":{\"description\":\"Open Advertising ID, used on Huawei devices and other Android devices without Google Play Services.\",\"example\":\"00aa00a0-0000-0a00-a000-aaa0000a0aaa\",\"type\":\"string\"}},\"type\":\"object\"},\"android_id\":{\"description\":\"Android hardware ID\",\"example\":\"a12300000000\",\"type\":\"string\"},\"anon_id\":{\"description\":\"The Facebook anonymous user ID. **Required** when running Facebook campaigns using Aggregated Event Measurement (AEM) on iOS.\",\"example\":\"fbanon_abc123def456\",\"type\":\"string\"},\"app_version\":{\"description\":\"The app version downloaded by the user.\",\"example\":\"1.0.0\",\"type\":\"string\"},\"brand\":{\"description\":\"The brand of the device\",\"example\":\"LGE\",\"type\":\"string\"},\"browser_fingerprint_id\":{\"description\":\"Branch internal-only field for tracking browsers.\",\"example\":\"857675855146829999\",\"type\":\"string\"},\"country\":{\"description\":\"The country code of the user, usually based on device settings or user agent string.\",\"example\":\"US\",\"type\":\"string\"},\"developer_identity\":{\"description\":\"The developer-specified identity for a user.\",\"example\":\"user123\",\"type\":\"string\"},\"dma_ad_personalization\":{\"description\":\"Whether end user has granted or denied ads personalization consent. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"dma_ad_user_data\":{\"description\":\"Whether end user has granted or denied consent for 3P transmission of user level data for ads. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"dma_eea\":{\"description\":\"Whether European regulations, including the DMA, apply to this user and conversion. **Required** if EU regulations apply to this user. Failure to include user consent signals may result in attribution or campaign performance degradation.\",\"example\":\"true\",\"type\":\"boolean\"},\"environment\":{\"description\":\"usually FULL_APP\",\"example\":\"FULL_APP\",\"type\":\"string\"},\"google_analytics_id\":{\"description\":\"The Google Analytics client ID, useful for cross-platform stitching with Google Analytics. Include where applicable to improve attribution coverage and downstream analytics.\",\"example\":\"GA1.2.123456789.1234567890\",\"type\":\"string\"},\"http_origin\":{\"description\":\"The current page url where Web SDK logged web session start.\",\"example\":\"https://example.com/landing\",\"type\":\"string\"},\"http_referrer\":{\"description\":\"The referral url that led to the current page where Web SDK logged web session start.\",\"example\":\"https://referrer.example.com/path\",\"type\":\"string\"},\"idfa\":{\"description\":\"iOS advertising ID\",\"example\":\"00000000-0000-0000-0000-000000000001\",\"type\":\"string\"},\"idfv\":{\"description\":\"iOS vendor ID\",\"example\":\"00000000-0000-0000-0000-000000000002\",\"type\":\"string\"},\"ip\":{\"description\":\"The IP address for the device where the event occurred. Required if using the `X-IP-Override` request header.\",\"example\":\"198.51.100.42\",\"type\":\"string\"},\"language\":{\"description\":\"The language code of the user, usually based on device settings or user agent string.\",\"example\":\"en\",\"type\":\"string\"},\"limit_ad_tracking\":{\"description\":\"true if the partner has opted to not be tracked by advertisers\",\"example\":\"false\",\"type\":\"boolean\"},\"local_ip\":{\"description\":\"Android only - local ip of the device\",\"example\":\"192.0.2.1\",\"type\":\"string\"},\"model\":{\"description\":\"The model of the device.\",\"example\":\"Nexus 5X\",\"type\":\"string\"},\"os\":{\"description\":\"One of the following operating system e.g. Android, iOS,MAC_OS,LINUX,WINDOWS etc.\",\"example\":\"Android\",\"type\":\"string\"},\"os_version\":{\"description\":\"The version of the operating system. Strongly recommended for all paid traffic to ensure accurate attribution. **Required** for Facebook campaigns on iOS.\\n\",\"example\":\"12.4.0\",\"type\":\"string\"},\"randomized_device_token\":{\"description\":\"Branch internal-only field for tracking devices.\",\"example\":\"857675855146829998\",\"type\":\"string\"},\"screen_dpi\":{\"description\":\"The screen's DPI.\",\"example\":\"420\",\"type\":\"integer\"},\"screen_height\":{\"description\":\"The screen's height.\",\"example\":\"1794\",\"type\":\"integer\"},\"screen_width\":{\"description\":\"The screen's width.\",\"example\":\"1080\",\"type\":\"integer\"},\"user_agent\":{\"description\":\"The user agent of the browser or app where the event occurred. Usually associated with a webview.\",\"example\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)\",\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"branch_key\",\"name\",\"user_data\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Successful event ingestion. The response carries SKAdNetwork-relevant fields that the app can use to update its native SKAN conversion value.\",\"properties\":{\"ascending_only\":{\"example\":\"false\",\"type\":\"boolean\"},\"coarse_key\":{\"example\":\"high\",\"type\":\"string\"},\"locked\":{\"example\":\"false\",\"type\":\"boolean\"},\"update_conversion_value\":{\"example\":\"3\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Ok\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Authentication failed !\\\",\\n        \\\"code\\\": 400\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"400\",\"type\":\"integer\"},\"message\":{\"example\":\"Authentication failed !\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Authentication Failed\"},\"429\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"code\\\": 429,\\n        \\\"message\\\": \\\"Rate limit reached.\\\"\\n    }\\n}\"}},\"schema\":{\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"type\":\"object\"}}},\"description\":\"Rate Limit Reached\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
+                  "kind": "http",
+                  "method": "POST",
+                  "orig": "/event/standard",
+                  "segments": [
+                    {
+                      "lit": "event"
+                    },
+                    {
+                      "lit": "standard"
+                    }
+                  ],
+                  "select": {
+                    "exist": [
+                      "accept",
+                      "content_type",
+                      "x_ip_override"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "debug": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "max": 100,
+              "redact": [
+                "authorization",
+                "cookie",
+                "set-cookie",
+                "api-key",
+                "apikey",
+                "x-api-key",
+                "idempotency-key"
+              ]
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "onEntry": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreDone": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PreUnexpected": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "debug",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Request/response capture ring buffer for debugging",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "idempotency": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "header": "Idempotency-Key",
+              "methods": [
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+              ],
+              "ops": [
+                "create",
+                "update",
+                "remove"
+              ]
+            },
+            "optspec": {
+              "keygen": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "idempotency",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Idempotency keys for safe retries of mutating operations",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "metrics": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "now": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreDone": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PreUnexpected": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "metrics",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Statistics capture: per-operation counters and latency",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "paging": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "afterVar": "after",
+              "cursorParam": "cursor",
+              "firstVar": "first",
+              "limitParam": "limit",
+              "pageParam": "page",
+              "startPage": 1
+            },
+            "optspec": {
+              "limit": "`$NUMBER`",
+              "ops": "`$LIST`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "paging",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Pagination signals for list operations",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicCustomFlow": {
+          "active": true,
+          "entity": "custom",
+          "key$": "BasicCustomFlow",
+          "kind": "basic",
+          "name": "BasicCustomFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "custom_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicStandardFlow": {
+          "active": true,
+          "entity": "standard",
+          "key$": "BasicStandardFlow",
+          "kind": "basic",
+          "name": "BasicStandardFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "standard_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "email": "support@branch.io",
+          "name": "Branch Support",
+          "url": "https://support.branch.io"
+        },
+        "description": "Branch's Events API is a robust endpoint for tracking all of your conversions in your app. With it, you'll be able to tie in detailed metadata about your Commerce, Content, Lifecycle, and Custom Events to better understand user behavior and attribute to your ongoing campaigns.\n\n## Important considerations\n\n- **Real-time only**: Events must be sent in real time as they occur. Branch does not support backtracking or historical event ingestion. Events with timestamps in the past will not be backfilled into reports.\n- **SKAdNetwork (SKAN)**: SKAN must be handled natively by your app, not via the Branch SDK. Branch returns SKAN-relevant fields (such as `coarse_key` and `update_conversion_value`) in the API response so your app can update its conversion value accordingly. See the [SKAdNetwork guide](https://help.branch.io/marketer-hub/docs/skadnetwork) for details.\n",
+        "servers": [
+          {
+            "url": "https://api2.branch.io/v2"
+          }
+        ],
+        "summary": "Branch's Events API is a robust endpoint for tracking all of your conversions in your app.",
+        "termsOfService": "https://branch.io/policies/",
+        "title": "Events API",
+        "version": "1.0.1",
+        "website": "https://api2.branch.io"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "go": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "go",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-cli",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-mcp",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go MCP server"
+        },
+        "js": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            }
+          },
+          "ext": "js",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "js",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.js"
+          ],
+          "title": "JavaScript"
+        },
+        "lua": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "lua",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "php",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "py",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
+          "title": "Python"
+        },
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-events",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      }
+    }
+  },
+  "name": "branch-events",
+  "name-": "branch-events",
+  "name_": "branch_events",
+  "name__orig": "branch-events",
+  "origin": "voxgig-sdk"
+}
