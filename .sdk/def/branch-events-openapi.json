@@ -1,0 +1,788 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "title": "Events API",
+  "description": "Branch's Events API is a robust endpoint for tracking all of your conversions in your app. With it, you'll be able to tie in detailed metadata about your Commerce, Content, Lifecycle, and Custom Events to better understand user behavior and attribute to your ongoing campaigns.\n\n## Important considerations\n\n- **Real-time only**: Events must be sent in real time as they occur. Branch does not support backtracking or historical event ingestion. Events with timestamps in the past will not be backfilled into reports.\n- **SKAdNetwork (SKAN)**: SKAN must be handled natively by your app, not via the Branch SDK. Branch returns SKAN-relevant fields (such as `coarse_key` and `update_conversion_value`) in the API response so your app can update its conversion value accordingly. See the [SKAdNetwork guide](https://help.branch.io/marketer-hub/docs/skadnetwork) for details.\n",
+  "termsOfService": "https://branch.io/policies/",
+  "contact": {
+   "name": "Branch Support",
+   "url": "https://support.branch.io",
+   "email": "support@branch.io"
+  },
+  "version": "1.0.1"
+ },
+ "servers": [
+  {
+   "url": "https://api2.branch.io/v2"
+  }
+ ],
+ "paths": {
+  "/event/custom": {
+   "post": {
+    "tags": [
+     "Events API"
+    ],
+    "summary": "Logging Custom Events",
+    "description": "This endpoint is used to log custom events.\n\n## Important considerations\n\n- **Real-time only**: Events must be sent in real time as they occur. Branch does not support backtracking or historical event ingestion. Events with timestamps in the past will not be backfilled into reports.\n- **SKAdNetwork (SKAN)**: SKAN must be handled natively by your app, not via the Branch SDK. Branch returns SKAN-relevant fields (such as `coarse_key` and `update_conversion_value`) in the API response so your app can update its conversion value accordingly. See the [SKAdNetwork guide](https://help.branch.io/marketer-hub/docs/skadnetwork) for details.\n",
+    "operationId": "logCustomEvents",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "Content-Type",
+      "schema": {
+       "type": "string",
+       "example": "application/json"
+      },
+      "required": "false",
+      "description": "Recommended. The media type of the request body. Should be `application/json`."
+     },
+     {
+      "in": "header",
+      "name": "Accept",
+      "schema": {
+       "type": "string",
+       "example": "application/json"
+      },
+      "required": "false",
+      "description": "Recommended. The media type the client expects in the response. Should be `application/json`."
+     },
+     {
+      "in": "header",
+      "name": "X-IP-Override",
+      "schema": {
+       "type": "string",
+       "example": "198.51.100.42"
+      },
+      "required": "false",
+      "description": "Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend).\n\n**Two requirements must be met for this header to function:**\n\n1. **Your app ID must be allowlisted by Branch.** The header is ignored until allowlisting is enabled. [Open a support request](https://support.branch.io/) to have your app ID allowlisted before sending this header in production.\n2. **You must also include `user_data.ip` in the request body** with the same IP value. Sending the header alone is not sufficient — the body field is what Branch persists for attribution.\n"
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/log_custom_request_body"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Ok",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_200"
+        }
+       }
+      }
+     },
+     "400": {
+      "description": "Authentication Failed",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_400"
+        },
+        "examples": {
+         "Result": {
+          "value": "{\n    \"error\": {\n        \"message\": \"Authentication failed !\",\n        \"code\": 400\n    }\n}"
+         }
+        }
+       }
+      }
+     },
+     "429": {
+      "description": "Rate Limit Reached",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_400"
+        },
+        "examples": {
+         "Result": {
+          "value": "{\n    \"error\": {\n        \"code\": 429,\n        \"message\": \"Rate limit reached.\"\n    }\n}"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/event/standard": {
+   "post": {
+    "tags": [
+     "Events API"
+    ],
+    "summary": "Logging Standard Events",
+    "description": "This endpoint is used to log standard events i.e. Commerce, Content, User Lifecycle.\n\n## Important considerations\n\n- **Real-time only**: Events must be sent in real time as they occur. Branch does not support backtracking or historical event ingestion. Events with timestamps in the past will not be backfilled into reports.\n- **SKAdNetwork (SKAN)**: SKAN must be handled natively by your app, not via the Branch SDK. Branch returns SKAN-relevant fields (such as `coarse_key` and `update_conversion_value`) in the API response so your app can update its conversion value accordingly. See the [SKAdNetwork guide](https://help.branch.io/marketer-hub/docs/skadnetwork) for details.\n",
+    "operationId": "logStandardEvents",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "Content-Type",
+      "schema": {
+       "type": "string",
+       "example": "application/json"
+      },
+      "required": "false",
+      "description": "Recommended. The media type of the request body. Should be `application/json`."
+     },
+     {
+      "in": "header",
+      "name": "Accept",
+      "schema": {
+       "type": "string",
+       "example": "application/json"
+      },
+      "required": "false",
+      "description": "Recommended. The media type the client expects in the response. Should be `application/json`."
+     },
+     {
+      "in": "header",
+      "name": "X-IP-Override",
+      "schema": {
+       "type": "string",
+       "example": "198.51.100.42"
+      },
+      "required": "false",
+      "description": "Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend).\n\n**Two requirements must be met for this header to function:**\n\n1. **Your app ID must be allowlisted by Branch.** The header is ignored until allowlisting is enabled. [Open a support request](https://support.branch.io/) to have your app ID allowlisted before sending this header in production.\n2. **You must also include `user_data.ip` in the request body** with the same IP value. Sending the header alone is not sufficient — the body field is what Branch persists for attribution.\n"
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/log_standard_request_body"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Ok",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_200"
+        }
+       }
+      }
+     },
+     "400": {
+      "description": "Authentication Failed",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_400"
+        },
+        "examples": {
+         "Result": {
+          "value": "{\n    \"error\": {\n        \"message\": \"Authentication failed !\",\n        \"code\": 400\n    }\n}"
+         }
+        }
+       }
+      }
+     },
+     "429": {
+      "description": "Rate Limit Reached",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/inline_response_400"
+        },
+        "examples": {
+         "Result": {
+          "value": "{\n    \"error\": {\n        \"code\": 429,\n        \"message\": \"Rate limit reached.\"\n    }\n}"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "log_custom_request_body": {
+    "type": "object",
+    "required": [
+     "branch_key",
+     "name"
+    ],
+    "properties": {
+     "branch_key": {
+      "description": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
+      "type": "string",
+      "example": "key_live_xxxx"
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the event to log. Can be a string of custom event name. For instance \"picture swiped\".\n",
+      "example": "CustomEventTest"
+     },
+     "user_data": {
+      "$ref": "#/components/schemas/user_data_standard"
+     },
+     "custom_data": {
+      "type": "object",
+      "description": "Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.",
+      "additionalProperties": "true"
+     },
+     "meta_data": {
+      "type": "object",
+      "description": "Additional metadata for the event.",
+      "additionalProperties": "true"
+     },
+     "event_data": {
+      "$ref": "#/components/schemas/event_data_standard"
+     }
+    }
+   },
+   "inline_response_200": {
+    "type": "object",
+    "description": "Successful event ingestion. The response carries SKAdNetwork-relevant fields that the app can use to update its native SKAN conversion value.",
+    "properties": {
+     "ascending_only": {
+      "type": "boolean",
+      "example": "false"
+     },
+     "coarse_key": {
+      "type": "string",
+      "example": "high"
+     },
+     "locked": {
+      "type": "boolean",
+      "example": "false"
+     },
+     "update_conversion_value": {
+      "type": "integer",
+      "example": "3"
+     }
+    }
+   },
+   "inline_response_400": {
+    "type": "object",
+    "properties": {
+     "error": {
+      "$ref": "#/components/schemas/inline_response_400_error"
+     }
+    }
+   },
+   "user_data_standard": {
+    "type": "object",
+    "description": "Information about the user and the device the event occurred on.\n\n**Required identifiers**: You must include at least one of the following in `user_data`:\n  * `developer_identity`, or\n  * `browser_fingerprint_id`, or\n  * `os=iOS` AND `idfa`, or\n  * `os=iOS` AND `idfv`, or\n  * `os=Android` AND `android_id`, or\n  * `os=Android` AND `aaid`\n",
+    "properties": {
+     "os": {
+      "type": "string",
+      "description": "One of the following operating system e.g. Android, iOS,MAC_OS,LINUX,WINDOWS etc.",
+      "example": "Android"
+     },
+     "os_version": {
+      "type": "string",
+      "description": "The version of the operating system. Strongly recommended for all paid traffic to ensure accurate attribution. **Required** for Facebook campaigns on iOS.\n",
+      "example": "12.4.0"
+     },
+     "environment": {
+      "type": "string",
+      "description": "usually FULL_APP",
+      "example": "FULL_APP"
+     },
+     "aaid": {
+      "type": "string",
+      "description": "The Android/Google advertising ID.",
+      "example": "abcdabcd-0123-0123-00f0-000000000000"
+     },
+     "android_id": {
+      "type": "string",
+      "description": "Android hardware ID",
+      "example": "a12300000000"
+     },
+     "idfa": {
+      "type": "string",
+      "description": "iOS advertising ID",
+      "example": "00000000-0000-0000-0000-000000000001"
+     },
+     "idfv": {
+      "type": "string",
+      "description": "iOS vendor ID",
+      "example": "00000000-0000-0000-0000-000000000002"
+     },
+     "anon_id": {
+      "type": "string",
+      "description": "The Facebook anonymous user ID. **Required** when running Facebook campaigns using Aggregated Event Measurement (AEM) on iOS.",
+      "example": "fbanon_abc123def456"
+     },
+     "advertising_ids": {
+      "type": "object",
+      "description": "Wrapper object for advertising identifiers. Use this in addition to the flat aaid, idfa, and idfv fields above to future-proof your integration for non-standard IDs (for example, OAID on Huawei devices). Additional advertising ID keys may be supported as new platforms emerge — contact Branch Support if you need to send an identifier that is not listed here.",
+      "properties": {
+       "oaid": {
+        "type": "string",
+        "description": "Open Advertising ID, used on Huawei devices and other Android devices without Google Play Services.",
+        "example": "00aa00a0-0000-0a00-a000-aaa0000a0aaa"
+       }
+      }
+     },
+     "google_analytics_id": {
+      "type": "string",
+      "description": "The Google Analytics client ID, useful for cross-platform stitching with Google Analytics. Include where applicable to improve attribution coverage and downstream analytics.",
+      "example": "GA1.2.123456789.1234567890"
+     },
+     "limit_ad_tracking": {
+      "type": "boolean",
+      "description": "true if the partner has opted to not be tracked by advertisers",
+      "example": "false"
+     },
+     "user_agent": {
+      "type": "string",
+      "description": "The user agent of the browser or app where the event occurred. Usually associated with a webview.",
+      "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
+     },
+     "browser_fingerprint_id": {
+      "type": "string",
+      "description": "Branch internal-only field for tracking browsers.",
+      "example": "857675855146829999"
+     },
+     "http_origin": {
+      "type": "string",
+      "description": "The current page url where Web SDK logged web session start.",
+      "example": "https://example.com/landing"
+     },
+     "http_referrer": {
+      "type": "string",
+      "description": "The referral url that led to the current page where Web SDK logged web session start.",
+      "example": "https://referrer.example.com/path"
+     },
+     "developer_identity": {
+      "type": "string",
+      "description": "The developer-specified identity for a user.",
+      "example": "user123"
+     },
+     "country": {
+      "type": "string",
+      "description": "The country code of the user, usually based on device settings or user agent string.",
+      "example": "US"
+     },
+     "language": {
+      "type": "string",
+      "description": "The language code of the user, usually based on device settings or user agent string.",
+      "example": "en"
+     },
+     "ip": {
+      "type": "string",
+      "description": "The IP address for the device where the event occurred. Required if using the `X-IP-Override` request header.",
+      "example": "198.51.100.42"
+     },
+     "local_ip": {
+      "type": "string",
+      "description": "Android only - local ip of the device",
+      "example": "192.0.2.1"
+     },
+     "brand": {
+      "type": "string",
+      "description": "The brand of the device",
+      "example": "LGE"
+     },
+     "randomized_device_token": {
+      "type": "string",
+      "description": "Branch internal-only field for tracking devices.",
+      "example": "857675855146829998"
+     },
+     "app_version": {
+      "type": "string",
+      "description": "The app version downloaded by the user.",
+      "example": "1.0.0"
+     },
+     "model": {
+      "type": "string",
+      "description": "The model of the device.",
+      "example": "Nexus 5X"
+     },
+     "screen_dpi": {
+      "type": "integer",
+      "description": "The screen's DPI.",
+      "example": "420"
+     },
+     "screen_height": {
+      "type": "integer",
+      "description": "The screen's height.",
+      "example": "1794"
+     },
+     "screen_width": {
+      "type": "integer",
+      "description": "The screen's width.",
+      "example": "1080"
+     },
+     "dma_eea": {
+      "type": "boolean",
+      "description": "Whether European regulations, including the DMA, apply to this user and conversion. **Required** if EU regulations apply to this user. Failure to include user consent signals may result in attribution or campaign performance degradation.",
+      "example": "true"
+     },
+     "dma_ad_personalization": {
+      "type": "boolean",
+      "description": "Whether end user has granted or denied ads personalization consent. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.",
+      "example": "true"
+     },
+     "dma_ad_user_data": {
+      "type": "boolean",
+      "description": "Whether end user has granted or denied consent for 3P transmission of user level data for ads. **Required** if `dma_eea` is set to `true` (i.e., EU regulations apply to this user). Failure to include user consent signals may result in attribution or campaign performance degradation.",
+      "example": "true"
+     }
+    }
+   },
+   "event_data_standard": {
+    "type": "object",
+    "properties": {
+     "transaction_id": {
+      "type": "string",
+      "description": "The partner-specified transaction id for their internal use",
+      "example": "00000000"
+     },
+     "revenue": {
+      "type": "number",
+      "description": "The partner-specified reported revenue for the event.",
+      "example": "1.5"
+     },
+     "currency": {
+      "type": "string",
+      "description": "Currency that revenue, price, shipping, tax were originally reported in by the partner",
+      "example": "USD"
+     },
+     "shipping": {
+      "type": "number",
+      "description": "Shipping cost associated with the transaction.",
+      "example": "10.2"
+     },
+     "tax": {
+      "type": "number",
+      "description": "Total tax associated with the transaction.",
+      "example": "12.3"
+     },
+     "coupon": {
+      "type": "string",
+      "description": "Transaction coupon redeemed with the transaction (e.g. \"SPRING2017\")",
+      "example": "coupon"
+     },
+     "affiliation": {
+      "type": "string",
+      "description": "Store or affiliation from which this transaction occurred (e.g. Google Store)",
+      "example": "test_affiliation"
+     },
+     "description": {
+      "type": "string",
+      "description": "Description associated with the event, not necessarily specific to any individual content items (see below)",
+      "example": "Event_description"
+     },
+     "search_query": {
+      "type": "string",
+      "description": "Additional search queries.",
+      "example": "Test Search query"
+     }
+    }
+   },
+   "inline_response_400_error": {
+    "type": "object",
+    "properties": {
+     "message": {
+      "type": "string",
+      "example": "Authentication failed !"
+     },
+     "code": {
+      "type": "integer",
+      "example": "400"
+     }
+    }
+   },
+   "log_standard_request_body": {
+    "type": "object",
+    "properties": {
+     "branch_key": {
+      "description": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
+      "type": "string",
+      "example": "key_live_xxxx"
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the event to log. Must be one of the following standard Branch Event names:\n  * Commerce:\n    * ADD_TO_CART\n    * ADD_TO_WISHLIST\n    * VIEW_CART\n    * INITIATE_PURCHASE\n    * ADD_PAYMENT_INFO\n    * CLICK_AD\n    * PURCHASE\n    * SPEND_CREDITS\n    * VIEW_AD\n  * Content:\n    * SEARCH\n    * VIEW_ITEM\n    * VIEW_ITEMS\n    * RATE\n    * SHARE\n    * INITIATE_STREAM\n    * COMPLETE_STREAM\n  * User Lifecycle:\n    * COMPLETE_REGISTRATION\n    * COMPLETE_TUTORIAL\n    * ACHIEVE_LEVEL\n    * UNLOCK_ACHIEVEMENT\n    * INVITE\n    * LOGIN\n    * START_TRIAL\n    * SUBSCRIBE\n",
+      "enum": [
+       "ADD_TO_CART",
+       "ADD_TO_WISHLIST",
+       "VIEW_CART",
+       "INITIATE_PURCHASE",
+       "ADD_PAYMENT_INFO",
+       "CLICK_AD",
+       "PURCHASE",
+       "SPEND_CREDITS",
+       "VIEW_AD",
+       "SEARCH",
+       "VIEW_ITEM",
+       "VIEW_ITEMS",
+       "RATE",
+       "SHARE",
+       "INITIATE_STREAM",
+       "COMPLETE_STREAM",
+       "COMPLETE_REGISTRATION",
+       "COMPLETE_TUTORIAL",
+       "ACHIEVE_LEVEL",
+       "UNLOCK_ACHIEVEMENT",
+       "INVITE",
+       "LOGIN",
+       "START_TRIAL",
+       "SUBSCRIBE"
+      ],
+      "example": "PURCHASE"
+     },
+     "customer_event_alias": {
+      "type": "string",
+      "description": "The event alias as defined by you; used in addition to the event name defined above.",
+      "example": "my custom alias"
+     },
+     "user_data": {
+      "$ref": "#/components/schemas/user_data_standard"
+     },
+     "custom_data": {
+      "type": "object",
+      "description": "Additional custom key-value pairs that you want attached to the event. Values may be of any JSON type. Attached to events retrieved via Exports and sent via Webhooks.",
+      "additionalProperties": "true"
+     },
+     "event_data": {
+      "$ref": "#/components/schemas/event_data_standard"
+     },
+     "content_items": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/content_items_standard"
+      }
+     }
+    },
+    "required": [
+     "branch_key",
+     "name",
+     "user_data"
+    ]
+   },
+   "content_items_standard": {
+    "type": "object",
+    "properties": {
+     "$content_schema": {
+      "type": "string",
+      "description": "Category / Schema for a piece of content.",
+      "enum": [
+       "COMMERCE_AUCTION",
+       "COMMERCE_BUSINESS",
+       "COMMERCE_OTHER",
+       "COMMERCE_PRODUCT",
+       "COMMERCE_RESTAURANT",
+       "COMMERCE_SERVICE",
+       "COMMERCE_TRAVEL_FLIGHT",
+       "COMMERCE_TRAVEL_HOTEL",
+       "COMMERCE_TRAVEL_OTHER",
+       "GAME_STATE",
+       "MEDIA_IMAGE",
+       "MEDIA_MIXED",
+       "MEDIA_MUSIC",
+       "MEDIA_OTHER",
+       "MEDIA_VIDEO",
+       "OTHER",
+       "TEXT_ARTICLE",
+       "TEXT_BLOG",
+       "TEXT_OTHER",
+       "TEXT_RECIPE",
+       "TEXT_REVIEW",
+       "TEXT_SEARCH_RESULTS",
+       "TEXT_STORY",
+       "TEXT_TECHNICAL_DOC"
+      ],
+      "example": "COMMERCE_PRODUCT"
+     },
+     "$og_title": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The title (for the individual content item).",
+      "example": "My Content Title"
+     },
+     "$og_image_url": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The image URL (for the individual content item).",
+      "example": "valid URL"
+     },
+     "$canonical_identifier": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. Used to allow Branch to unify content/messages for Content Analytics",
+      "example": "item12345"
+     },
+     "$publicly_indexable": {
+      "type": "boolean",
+      "description": "Commerce and Content Reports only. true-  content can be seen by anyone. false- cannot index for public use",
+      "example": "false"
+     },
+     "$locally_indexable": {
+      "type": "boolean",
+      "description": "Commerce and Content Reports only. true- content can be indexed for local (device) use. false- cannot index for local use",
+      "example": "true"
+     },
+     "$price": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The price for the product/content.",
+      "example": "23.2"
+     },
+     "$quantity": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The quantity of the item to be ordered (for PURCHASE, ADD_TO_CART, etc).",
+      "example": "2"
+     },
+     "$sku": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The product sku or product ID.",
+      "example": "1994320302"
+     },
+     "$product_name": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The product's name.",
+      "example": "my_product_name1"
+     },
+     "$product_brand": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The product's brand.",
+      "example": "my_prod_Brand1"
+     },
+     "$product_category": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The product's category, if it's a product",
+      "enum": [
+       "ANIMALS_AND_PET_SUPPLIES",
+       "APPAREL_AND_ACCESSORIES",
+       "ARTS_AND_ENTERTAINMENT",
+       "BABY_AND_TODDLER",
+       "BUSINESS_AND_INDUSTRIAL",
+       "CAMERAS_AND_OPTICS",
+       "ELECTRONICS",
+       "FOOD_BEVERAGES_AND_TOBACCO",
+       "FURNITURE",
+       "HARDWARE",
+       "HEALTH_AND_BEAUTY",
+       "HOME_AND_GARDEN",
+       "LUGGAGE_AND_BAGS",
+       "MATURE",
+       "MEDIA",
+       "OFFICE_SUPPLIES",
+       "RELIGIOUS_AND_CEREMONIAL",
+       "SOFTWARE",
+       "SPORTING_GOODS",
+       "TOYS_AND_GAMES",
+       "VEHICLES_AND_PARTS"
+      ],
+      "example": "BABY_AND_TODDLER"
+     },
+     "$product_variant": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The product's variant (e.g. XL, red).",
+      "example": "3T"
+     },
+     "$rating_average": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The average rating of the item.",
+      "example": "4.2"
+     },
+     "$rating_count": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The number of ratings for the item.",
+      "example": "5"
+     },
+     "$rating_max": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The maximum possible rating for the item (e.g. 5.0 if 5 stars is highest possible rating).",
+      "example": "5"
+     },
+     "$creation_timestamp": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Commerce and Content Reports only. The time the content was created (Unix timestamp, typically in milliseconds).",
+      "example": "1499892854966"
+     },
+     "$exp_date": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Commerce and Content Reports only. The last time after which this content is no longer valid. null / 0 mean no limit. Should rarely be set.",
+      "example": "0"
+     },
+     "$keywords": {
+      "type": "array",
+      "description": "Commerce and Content Reports only. keywords",
+      "items": {
+       "type": "string"
+      },
+      "example": [
+       "sneakers",
+       "shoes"
+      ]
+     },
+     "$address_street": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The street address for a restaurant, business, room (hotel), etc.",
+      "example": "Street_name1"
+     },
+     "$address_city": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The street address for a restaurant, business, room (hotel), etc.",
+      "example": "city1"
+     },
+     "$address_region": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The state or region for a restaurant, business, room (hotel), etc.",
+      "example": "Region1"
+     },
+     "$address_country": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The country code for a restaurant, business, room (hotel), etc.",
+      "example": "Country1"
+     },
+     "$address_postal_code": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. The postal/zip code for a restaurant, business, room (hotel), etc.",
+      "example": "postal_code"
+     },
+     "$latitude": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The latitude for a restaurant, business, room (hotel), etc.",
+      "example": "12.07"
+     },
+     "$longitude": {
+      "type": "number",
+      "description": "Commerce and Content Reports only. The longitude for a restaurant, business, room (hotel), etc.",
+      "example": "-97.5"
+     },
+     "$image_captions": {
+      "type": "array",
+      "description": "Commerce and Content Reports only.  The captions associated with the image.",
+      "items": {
+       "type": "string",
+       "example": "my_img_caption1"
+      }
+     },
+     "$condition": {
+      "type": "string",
+      "description": "Commerce and Content Reports only. For auctions, whether the item is new, good, acceptable, etc.",
+      "enum": [
+       "OTHER",
+       "NEW",
+       "EXCELLENT",
+       "GOOD",
+       "FAIR",
+       "POOR",
+       "USED",
+       "REFURBISHED"
+      ]
+     },
+     "$custom_fields": {
+      "description": "Commerce and Content Reports only. key-value pairs that the app developer would like attached to the content item. Values may be of any JSON type. Attached to events that are retrieved via Exports and sent via Webhooks.",
+      "type": "object",
+      "additionalProperties": "true"
+     }
+    }
+   }
+  }
+ }
+}
