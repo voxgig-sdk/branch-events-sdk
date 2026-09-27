@@ -162,50 +162,60 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ascending_only",
+						"title": "Ascending Only",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "branch_key",
+						"title": "Branch Key",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "coarse_key",
+						"title": "Coarse Key",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "custom_data",
-						"short": "Additional custom key-value pairs that you want attached to the event.",
+						"title": "Custom Data",
 						"type": "`$OBJECT`",
+						"short": "Additional custom key-value pairs that you want attached to the event.",
 					},
 					map[string]any{
 						"name": "event_data",
+						"title": "Event Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "locked",
+						"title": "Locked",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "meta_data",
-						"short": "Additional metadata for the event.",
+						"title": "Meta Data",
 						"type": "`$OBJECT`",
+						"short": "Additional metadata for the event.",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The name of the event to log.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "update_conversion_value",
+						"title": "Update Conversion Value",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "user_data",
-						"short": "Information about the user and the device the event occurred on.",
+						"title": "User Data",
 						"type": "`$OBJECT`",
+						"short": "Information about the user and the device the event occurred on.",
 					},
 				},
 				"name": "custom",
@@ -215,34 +225,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"example": "application/json",
-											"kind": "header",
-											"name": "accept",
-											"orig": "accept",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "application/json",
-											"kind": "header",
-											"name": "content_type",
-											"orig": "content_type",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "198.51.100.42",
-											"kind": "header",
-											"name": "x_ip_override",
-											"orig": "x_ip_override",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/event/custom",
@@ -254,20 +236,49 @@ func MakeConfig() map[string]any {
 										"lit": "custom",
 									},
 								},
+								"parts": []any{
+									"event",
+									"custom",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "accept",
+											"orig": "accept",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "application/json",
+										},
+										map[string]any{
+											"name": "content_type",
+											"orig": "content_type",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "application/json",
+										},
+										map[string]any{
+											"name": "x_ip_override",
+											"orig": "x_ip_override",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "198.51.100.42",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"accept",
 										"content_type",
 										"x_ip_override",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"event",
-									"custom",
 								},
 							},
 						},
@@ -281,55 +292,66 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ascending_only",
+						"title": "Ascending Only",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "branch_key",
+						"title": "Branch Key",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "coarse_key",
+						"title": "Coarse Key",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "content_items",
+						"title": "Content Items",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "custom_data",
-						"short": "Additional custom key-value pairs that you want attached to the event.",
+						"title": "Custom Data",
 						"type": "`$OBJECT`",
+						"short": "Additional custom key-value pairs that you want attached to the event.",
 					},
 					map[string]any{
 						"name": "customer_event_alias",
-						"short": "The event alias as defined by you; used in addition to the event name defined above.",
+						"title": "Customer Event Alias",
 						"type": "`$STRING`",
+						"short": "The event alias as defined by you; used in addition to the event name defined above.",
 					},
 					map[string]any{
 						"name": "event_data",
+						"title": "Event Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "locked",
+						"title": "Locked",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The name of the event to log.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "update_conversion_value",
+						"title": "Update Conversion Value",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "user_data",
+						"title": "User Data",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Information about the user and the device the event occurred on.",
-						"type": "`$OBJECT`",
 					},
 				},
 				"name": "standard",
@@ -339,34 +361,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"example": "application/json",
-											"kind": "header",
-											"name": "accept",
-											"orig": "accept",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "application/json",
-											"kind": "header",
-											"name": "content_type",
-											"orig": "content_type",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "198.51.100.42",
-											"kind": "header",
-											"name": "x_ip_override",
-											"orig": "x_ip_override",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/event/standard",
@@ -378,20 +372,49 @@ func MakeConfig() map[string]any {
 										"lit": "standard",
 									},
 								},
+								"parts": []any{
+									"event",
+									"standard",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "accept",
+											"orig": "accept",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "application/json",
+										},
+										map[string]any{
+											"name": "content_type",
+											"orig": "content_type",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "application/json",
+										},
+										map[string]any{
+											"name": "x_ip_override",
+											"orig": "x_ip_override",
+											"type": "`$STRING`",
+											"kind": "header",
+											"reqd": true,
+											"example": "198.51.100.42",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"accept",
 										"content_type",
 										"x_ip_override",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"event",
-									"standard",
 								},
 							},
 						},

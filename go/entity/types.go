@@ -1,7 +1,7 @@
 // Typed models for the BranchEvents SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,16 +14,6 @@ import (
 
 // Custom is the typed data model for the custom entity.
 type Custom struct {
-	AscendingOnly *bool `json:"ascending_only,omitempty"`
-	BranchKey string `json:"branch_key"`
-	CoarseKey *string `json:"coarse_key,omitempty"`
-	CustomData *map[string]any `json:"custom_data,omitempty"`
-	EventData *map[string]any `json:"event_data,omitempty"`
-	Locked *bool `json:"locked,omitempty"`
-	MetaData *map[string]any `json:"meta_data,omitempty"`
-	Name string `json:"name"`
-	UpdateConversionValue *int `json:"update_conversion_value,omitempty"`
-	UserData *map[string]any `json:"user_data,omitempty"`
 }
 
 // CustomCreateData is the typed request payload for Custom.CreateTyped.
@@ -42,17 +32,6 @@ type CustomCreateData struct {
 
 // Standard is the typed data model for the standard entity.
 type Standard struct {
-	AscendingOnly *bool `json:"ascending_only,omitempty"`
-	BranchKey string `json:"branch_key"`
-	CoarseKey *string `json:"coarse_key,omitempty"`
-	ContentItems *[]any `json:"content_items,omitempty"`
-	CustomData *map[string]any `json:"custom_data,omitempty"`
-	CustomerEventAlias *string `json:"customer_event_alias,omitempty"`
-	EventData *map[string]any `json:"event_data,omitempty"`
-	Locked *bool `json:"locked,omitempty"`
-	Name string `json:"name"`
-	UpdateConversionValue *int `json:"update_conversion_value,omitempty"`
-	UserData map[string]any `json:"user_data"`
 }
 
 // StandardCreateData is the typed request payload for Standard.CreateTyped.

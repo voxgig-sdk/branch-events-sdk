@@ -1,0 +1,18 @@
+# BasicStandardFlow
+
+main: kit: flow: BasicStandardFlow:
+{
+  entity: "standard",
+  kind: "basic",
+  name: "BasicStandardFlow",
+  step: [
+    {
+      i: {
+        ref: "standard_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicStandardFlow"
+}

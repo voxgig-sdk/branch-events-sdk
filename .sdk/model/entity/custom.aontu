@@ -1,0 +1,142 @@
+# Entity: custom
+
+main: kit: entity: custom: {
+
+  alias: field: {}
+
+  fields: {
+    ascending_only: {
+      h: "Ascending Only"
+      n: "ascending_only"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    branch_key: {
+      h: "Branch Key"
+      n: "branch_key"
+      r: true
+      sh: "The Branch Key of the originating app obtained in your [Account Settings](https://help.branch.io/using-branch/docs/profile-settings)"
+      t: "`$STRING`"
+    }
+    coarse_key: {
+      h: "Coarse Key"
+      n: "coarse_key"
+      r: false
+      t: "`$STRING`"
+    }
+    custom_data: {
+      h: "Custom Data"
+      n: "custom_data"
+      r: false
+      sh: "Additional custom key-value pairs that you want attached to the event."
+      t: "`$OBJECT`"
+    }
+    event_data: {
+      h: "Event Data"
+      n: "event_data"
+      r: false
+      t: "`$OBJECT`"
+    }
+    locked: {
+      h: "Locked"
+      n: "locked"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    meta_data: {
+      h: "Meta Data"
+      n: "meta_data"
+      r: false
+      sh: "Additional metadata for the event."
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "The name of the event to log."
+      t: "`$STRING`"
+    }
+    update_conversion_value: {
+      h: "Update Conversion Value"
+      n: "update_conversion_value"
+      r: false
+      t: "`$INTEGER`"
+    }
+    user_data: {
+      h: "User Data"
+      n: "user_data"
+      r: false
+      sh: "Information about the user and the device the event occurred on."
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "custom"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /event/custom"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "application/json"
+                k: "header"
+                n: "accept"
+                or: "accept"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "application/json"
+                k: "header"
+                n: "content_type"
+                or: "content_type"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "198.51.100.42"
+                k: "header"
+                n: "x_ip_override"
+                or: "x_ip_override"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/event/custom"
+          q: {
+            exist: [
+              "accept"
+              "content_type"
+              "x_ip_override"
+            ]
+          }
+          s: [
+            {
+              lit: "event"
+            }
+            {
+              lit: "custom"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

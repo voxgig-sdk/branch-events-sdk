@@ -20,14 +20,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="standard">Standard</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="standard">Standard</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -48,6 +48,36 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">created, err := client.Standard(nil).Create(map[string]any{&quot;branch_key&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;, &quot;user_data&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const created = await client.Standard().create({ branch_key: &quot;example&quot;, name: &quot;example&quot;, user_data: {} })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local created, err = client:Standard():create({ branch_key = &quot;example&quot;, name = &quot;example&quot;, user_data = {} })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$created = $client-&gt;Standard()-&gt;create([&quot;branch_key&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot;, &quot;user_data&quot; =&gt; []]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">created = client.Standard().create({ &quot;branch_key&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;, &quot;user_data&quot;: {} })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const created = await client.Standard().create({ branch_key: &quot;example&quot;, name: &quot;example&quot;, user_data: {} })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -63,7 +93,7 @@
 <td><code>ascending_only</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Ascending Only</td>
 </tr>
 <tr>
 <td><code>branch_key</code></td>
@@ -75,13 +105,13 @@
 <td><code>coarse_key</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Coarse Key</td>
 </tr>
 <tr>
 <td><code>content_items</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Content Items</td>
 </tr>
 <tr>
 <td><code>custom_data</code></td>
@@ -99,13 +129,13 @@
 <td><code>event_data</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Event Data</td>
 </tr>
 <tr>
 <td><code>locked</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Locked</td>
 </tr>
 <tr>
 <td><code>name</code></td>
@@ -117,7 +147,7 @@
 <td><code>update_conversion_value</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>Update Conversion Value</td>
 </tr>
 <tr>
 <td><code>user_data</code></td>
@@ -135,7 +165,7 @@
 | --- | --- | --- | --- |
 | <code>Content-Type</code> | <code>header</code> | <code>string</code> | Yes | Recommended. The media type of the request body. Should be <code>application/json</code>. |
 | <code>Accept</code> | <code>header</code> | <code>string</code> | Yes | Recommended. The media type the client expects in the response. Should be <code>application/json</code>. |
-| <code>X-IP-Override</code> | <code>header</code> | <code>string</code> | Yes | Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend). <strong>Two requirements must be met for this header to function:</strong> 1. <strong>Your app ID must be allowlisted by Branch.</strong> The header is ignored until allowlisting is enabled. <a href="https://support.branch.io/">Open a support request</a> to have your app ID allowlisted before sending this header in production. 2. <strong>You must also include <code>user_data.ip</code> in the request body</strong> with the same IP value. Sending the header alone is not sufficient, the body field is what Branch persists for attribution. |</p>
+| <code>X-IP-Override</code> | <code>header</code> | <code>string</code> | Yes | Optional. Override the IP address Branch uses for the event (for example, when forwarding events server-to-server from your own backend). <strong>Two requirements must be met for this header to function:</strong> 1. <strong>Your app ID must be allowlisted by Branch.</strong> The header is ignored until allowlisting is enabled. <a href="https://support.branch.io/">Open a support request</a> to have your app ID allowlisted before sending this header in production. 2. <strong>You must also include ``user_data<code>.ip</code> in the request body</strong> with the same IP value. Sending the header alone is not sufficient, the body field is what Branch persists for attribution. |</p>
 <h4 id="request-body">Request body</h4>
 <p><code>application/json</code></p>
 <table>
@@ -308,7 +338,7 @@
 <td><code>content_items[].$quantity</code></td>
 <td><code>number</code></td>
 <td>No</td>
-<td>Commerce and Content Reports only. The quantity of the item to be ordered (for PURCHASE, ADD_TO_CART, etc).</td>
+<td>Commerce and Content Reports only. The quantity of the item to be ordered (for PURCHASE, <code>ADD_TO_CART</code>, etc).</td>
 </tr>
 <tr>
 <td><code>content_items[].$rating_average</code></td>
@@ -410,7 +440,7 @@
 <td><code>name</code></td>
 <td><code>enum: ADD_TO_CART, ADD_TO_WISHLIST, VIEW_CART, INITIATE_PURCHASE, ADD_PAYMENT_INFO, CLICK_AD, ...</code></td>
 <td>Yes</td>
-<td>The name of the event to log. Must be one of the following standard Branch Event names: * Commerce: * ADD_TO_CART * ADD_TO_WISHLIST * VIEW_CART * INITIATE_PURCHASE * ADD_PAYMENT_INFO * CLICK_AD * PURCHASE * SPEND_CREDITS * VIEW_AD * Content: * SEARCH * VIEW_ITEM * VIEW_ITEMS * RATE * SHARE * INITIATE_STREAM * COMPLETE_STREAM * User Lifecycle: * COMPLETE_REGISTRATION * COMPLETE_TUTORIAL * ACHIEVE_LEVEL * UNLOCK_ACHIEVEMENT * INVITE * LOGIN * START_TRIAL * SUBSCRIBE</td>
+<td>The name of the event to log. Must be one of the following standard Branch Event names: * Commerce: * <code>ADD_TO_CART</code> * <code>ADD_TO_WISHLIST</code> * <code>VIEW_CART</code> * <code>INITIATE_PURCHASE</code> * <code>ADD_PAYMENT_INFO</code> * <code>CLICK_AD</code> * PURCHASE * <code>SPEND_CREDITS</code> * <code>VIEW_AD</code> * Content: * SEARCH * <code>VIEW_ITEM</code> * <code>VIEW_ITEMS</code> * RATE * SHARE * <code>INITIATE_STREAM</code> * <code>COMPLETE_STREAM</code> * User Lifecycle: * <code>COMPLETE_REGISTRATION</code> * <code>COMPLETE_TUTORIAL</code> * <code>ACHIEVE_LEVEL</code> * <code>UNLOCK_ACHIEVEMENT</code> * INVITE * LOGIN * <code>START_TRIAL</code> * SUBSCRIBE</td>
 </tr>
 <tr>
 <td><code>user_data</code></td>
@@ -500,7 +530,7 @@
 <td><code>user_data.environment</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>usually FULL_APP</td>
+<td>usually <code>FULL_APP</code></td>
 </tr>
 <tr>
 <td><code>user_data.google_analytics_id</code></td>
@@ -566,7 +596,7 @@
 <td><code>user_data.os</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>One of the following operating system for example Android, iOS,MAC_OS,LINUX,WINDOWS etc.</td>
+<td>One of the following operating system for example Android, iOS,<code>MAC_OS</code>,LINUX,WINDOWS etc.</td>
 </tr>
 <tr>
 <td><code>user_data.os_version</code></td>
@@ -690,8 +720,20 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
 <td>No</td>
 <td></td>
 </tr>
